@@ -14,7 +14,7 @@ export default function App() {
           This is your brand new UI, built with React + TailwindCSS + smooth animations.
         </p>
         <button className="px-6 py-3 rounded-full bg-pink-500 hover:bg-pink-600 transition duration-300 shadow-lg">
-          Get Started
+          Start Editing
         </button>
       </div>
 
