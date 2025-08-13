@@ -13,7 +13,7 @@ export default function Hero() {
       </p>
 
       <div className="flex justify-center gap-4 mt-8">
-        <a href="#start" className="px-6 py-3 rounded-full bg-orange-400 hover:bg-orange-500 transition flex items-center gap-2">
+        <a href="#start" className="px-6 py-3 rounded-full bg-blue-400 hover:bg-blue-500 transition flex items-center gap-2">
           Start Editing
         </a>
         <a href="#features" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
