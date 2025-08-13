@@ -21,7 +21,7 @@ export default function Features() {
         >
           <div
             aria-hidden="true"
-            className="bg-orange-400 dark:bg-orange-500 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-lg"
+            className="bg-blue-400 dark:bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mb-4 text-lg"
           >
             {f.icon}
           </div>
