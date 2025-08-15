@@ -55,7 +55,7 @@ export default function NavBar() {
 
       {/* Desktop Actions */}
       <div className="hidden md:flex space-x-4">
-        <Link to="/signin" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
+        <Link to="/login" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
           login
         </Link>
         <Link to="/start" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
