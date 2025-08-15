@@ -3,7 +3,7 @@ import React from 'react'
 export default function Hero() {
   return (
     <section className="text-center pt-32 px-4">
-      <span className="inline-flex items-center gap-2 bg-orange-500 px-4 py-1 rounded-full text-sm">
+      <span className="inline-flex items-center gap-2 bg-blue-500 px-4 py-1 rounded-full text-sm">
         AI-Powered Photo & Video Editing
       </span>
 
