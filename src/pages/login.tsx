@@ -1,17 +1,19 @@
+// src/pages/LoginPage.tsx
+
 import React, { useEffect } from 'react';
 import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, googleProvider } from '../firebase';
-import { useNavigate } from 'react-router-dom'; // React Router ගෙන් navigate import කරගන්න
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [user, loading, error] = useAuthState(auth);
   const [signInWithGoogle, , , ] = useSignInWithGoogle(auth);
-  const navigate = useNavigate(); // navigate hook එක භාවිතා කරන්න
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      // User log වුණාට පස්සේ redirect කරන්න
-      navigate('/'); // homepage එකට redirect කිරීම
+      // User log වුණාට පස්සේ homepage එකට redirect කරන්න
+      navigate('/');
     }
   }, [user, navigate]);
 
@@ -31,7 +33,7 @@ const LoginPage = () => {
           Login using your Google Account
         </p>
         <button
-          onClick={() => signInWithGoogle('redirect')} // redirect option එක භාවිතා කරන්න
+          onClick={() => signInWithGoogle()}
           className="w-full flex items-center justify-center px-6 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-700 transition-colors"
         >
           Login with Google
