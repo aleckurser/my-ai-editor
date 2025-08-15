@@ -28,8 +28,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  place-items: ful;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -51,7 +50,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #c74fbd;
 }
 button:focus,
 button:focus-visible {
@@ -60,7 +59,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #0285f8;
     background-color: #ffffff;
   }
   a:hover {

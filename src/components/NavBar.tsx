@@ -70,12 +70,21 @@ export default function NavBar() {
       {/* Desktop Actions */}
       <div className="hidden md:flex space-x-4">
         <a href="#signin" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
-          Sign In
+          login
         </a>
         <a href="#start" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
           Get Started
         </a>
       </div>
+
+{isOpen && (
+  <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
+    <a href="/features" className="block hover:text-white">Features</a>
+    <a href="/pricing" className="block hover:text-white">Pricing</a>
+    <a href="/about" className="block hover:text-white">About</a>
+    ...
+  </div>
+)}
 
       {/* Mobile Menu Button */}
       <button

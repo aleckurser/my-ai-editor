@@ -5,11 +5,10 @@ import Features from './components/Features'
 
 export default function App() {
   return (
-    <>
+    <div className="min-h-screen bg-[url('/bg.jpg')] bg-cover bg-center">
       <NavBar />
       <Hero />
       <Features />
-    </>
+    </div>
   )
 }
-
