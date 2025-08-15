@@ -11,6 +11,7 @@ const firebaseConfig = {
   storageBucket: "oubex-editing.firebasestorage.app",
   messagingSenderId: "294107343291",
   appId: "1:294107343291:web:d9cfcdfaa66f04fabbfc9e",
+  measurementId: "G-8PDQJNZYB5"
 };
 
 // Firebase සේවාව ආරම්භ කරන්න
