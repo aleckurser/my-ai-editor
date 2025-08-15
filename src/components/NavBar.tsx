@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // 'next/link' වෙනුවට මෙය භාවිතා කරන්න
+import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase'; // firebase object එක import කරන්න
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
+
+  const [user, loading] = useAuthState(auth); // user ගේ තොරතුරු ලබා ගන්න
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,10 @@ export default function NavBar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScroll]);
+
+  const handleLogout = () => {
+    auth.signOut();
+  };
 
   return (
     <nav
@@ -53,14 +61,36 @@ export default function NavBar() {
         </Link>
       </div>
 
-      {/* Desktop Actions */}
+      {/* Desktop Actions (Login/User details) */}
       <div className="hidden md:flex space-x-4">
-        <Link to="/login" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
-          login
-        </Link>
-        <Link to="/start" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
-          Get Started
-        </Link>
+        {loading ? (
+          <p className="text-white">Loading...</p>
+        ) : user ? (
+          <>
+            <div className="flex items-center space-x-2">
+              {user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full"
+                />
+              )}
+              <p className={`${scrolled ? 'text-white' : 'text-black'}`}>
+                Hello, {user.displayName}
+              </p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
+            Login
+          </Link>
+        )}
       </div>
 
       {/* Mobile Menu Button */}
@@ -75,11 +105,28 @@ export default function NavBar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
-          <Link to="/features" className="block hover:text-white">Features</Link>
-          <Link to="/pricing" className="block hover:text-white">Pricing</Link>
-          <Link to="/about" className="block hover:text-white">About</Link>
-          <Link to="/signin" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Sign In</Link>
-          <Link to="/start" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Get Started</Link>
+          {user ? (
+            <>
+              <div className="flex items-center space-x-2">
+                {user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                )}
+                <p>Hello, {user.displayName}</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Login</Link>
+          )}
         </div>
       )}
 
