@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'; // useState සහ useEffect import කරන්න
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
-import Features from './components/Features';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,6 @@ export default function App() {
         <div className="min-h-screen bg-[url('/bg.jpg')] bg-cover bg-center">
           <NavBar />
           <Hero />
-          <Features />
         </div>
       )}
     </>
