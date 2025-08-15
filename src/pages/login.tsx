@@ -1,88 +1,64 @@
-// src/pages/Login.tsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import type { NextPage } from 'next'; // Next.js භාවිතා කරනවා නම්
 
-export default function Login() {
-  const [loading, setLoading] = useState(false);
+// React Router භාවිතා කරනවා නම්, මේ line එක ඉවත් කරන්න
+// import { Link } from 'react-router-dom';
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+const Login: NextPage = () => { // Next.js භාවිතා කරනවා නම් 'NextPage' type එක භාවිතා කරන්න
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    // Simulate login delay
-    setTimeout(() => {
-      setLoading(false);
-      alert("Login Successful! 🎉");
-    }, 2000);
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault(); // Default form submit එක නවත්වනවා
+
+    // මෙතනින් තමයි login logic එක ලියන්න ඕනේ
+    // උදාහරණයක් ලෙස, API එකකට දත්ත යැවීම
+    console.log('Login attempt with:', { email, password });
+
+    // Login සාර්ථක වුණාට පස්සේ, පරිශීලකයා වෙනත් පිටුවකට යොමු කරන්න පුළුවන්.
+    // Next.js: useRouter().push('/dashboard');
+    // React Router: navigate('/dashboard');
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="/bg.jpg"
-          alt="Background"
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-500/40 via-transparent to-blue-500/40"></div>
-      </div>
-
-      {/* Glass Card */}
-      <div className="relative z-10 bg-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20 animate-fadeInUp">
-        <h2 className="text-4xl font-bold text-center text-white mb-6">
-          Login
-        </h2>
-        <form className="space-y-5" onSubmit={handleSubmit}>
-          {/* Email */}
-          <div>
-            <label className="block text-white mb-1">Email</label>
-            <input
-              type="email"
-              required
-              className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              placeholder="Enter your email"
-            />
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg rounded-lg">
+        <h3 className="text-2xl font-bold text-center">Login to your account</h3>
+        <form onSubmit={handleLogin}>
+          <div className="mt-4">
+            <div>
+              <label className="block" htmlFor="email">Email</label>
+              <input 
+                type="email" 
+                placeholder="Email"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block">Password</label>
+              <input 
+                type="password" 
+                placeholder="Password"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex items-baseline justify-between mt-4">
+              <button type="submit" className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+                Login
+              </button>
+              <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
+            </div>
           </div>
-          {/* Password */}
-          <div>
-            <label className="block text-white mb-1">Password</label>
-            <input
-              type="password"
-              required
-              className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              placeholder="Enter your password"
-            />
-          </div>
-          {/* Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full p-3 rounded-lg font-semibold transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl active:scale-95 ${
-              loading
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-gradient-to-r from-pink-500 to-blue-500 text-white"
-            }`}
-          >
-            {loading ? (
-              <div className="flex items-center justify-center space-x-2">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Logging in...</span>
-              </div>
-            ) : (
-              "Login"
-            )}
-          </button>
         </form>
-        <p className="text-center text-sm text-white/80 mt-5">
-          Don't have an account?{" "}
-          <a
-            href="#"
-            className="underline hover:text-white transition-colors duration-200"
-          >
-            Sign Up
-          </a>
-        </p>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
