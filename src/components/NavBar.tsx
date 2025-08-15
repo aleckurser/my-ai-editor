@@ -1,7 +1,5 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom'; // 'next/link' වෙනුවට මෙය භාවිතා කරන්න
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +32,7 @@ export default function NavBar() {
     >
       {/* Logo */}
       <div className="flex items-center space-x-3">
-        <Link href="/">
+        <Link to="/">
           <a className={`logo block w-10 h-10 ${scrolled ? 'text-white' : 'text-black'}`} aria-label="Brand logo">
             {/* SVG code for logo */}
           </a>
@@ -44,24 +42,24 @@ export default function NavBar() {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6">
-        <Link href="/features">
-          <a className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>Features</a>
+        <Link to="/features" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+          Features
         </Link>
-        <Link href="/pricing">
-          <a className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>Pricing</a>
+        <Link to="/pricing" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+          Pricing
         </Link>
-        <Link href="/about">
-          <a className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>About</a>
+        <Link to="/about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+          About
         </Link>
       </div>
 
       {/* Desktop Actions */}
       <div className="hidden md:flex space-x-4">
-        <Link href="/signin">
-          <a className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">login</a>
+        <Link to="/signin" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
+          login
         </Link>
-        <Link href="/start">
-          <a className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Get Started</a>
+        <Link to="/start" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
+          Get Started
         </Link>
       </div>
 
@@ -77,21 +75,11 @@ export default function NavBar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
-          <Link href="/features">
-            <a className="block hover:text-white">Features</a>
-          </Link>
-          <Link href="/pricing">
-            <a className="block hover:text-white">Pricing</a>
-          </Link>
-          <Link href="/about">
-            <a className="block hover:text-white">About</a>
-          </Link>
-          <Link href="/signin">
-            <a className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Sign In</a>
-          </Link>
-          <Link href="/start">
-            <a className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Get Started</a>
-          </Link>
+          <Link to="/features" className="block hover:text-white">Features</Link>
+          <Link to="/pricing" className="block hover:text-white">Pricing</Link>
+          <Link to="/about" className="block hover:text-white">About</Link>
+          <Link to="/signin" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Sign In</Link>
+          <Link to="/start" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Get Started</Link>
         </div>
       )}
 
