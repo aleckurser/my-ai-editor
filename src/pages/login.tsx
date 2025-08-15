@@ -1,64 +1,48 @@
-import React, { useState } from 'react';
-import type { NextPage } from 'next'; // Next.js භාවිතා කරනවා නම්
+import React from 'react';
+import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { auth, googleProvider } from '../firebase'; // firebase.ts ෆයිල් එකෙන් auth සහ googleProvider import කරගන්න
 
-// React Router භාවිතා කරනවා නම්, මේ line එක ඉවත් කරන්න
-// import { Link } from 'react-router-dom';
+const LoginPage = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
 
-const Login: NextPage = () => { // Next.js භාවිතා කරනවා නම් 'NextPage' type එක භාවිතා කරන්න
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault(); // Default form submit එක නවත්වනවා
-
-    // මෙතනින් තමයි login logic එක ලියන්න ඕනේ
-    // උදාහරණයක් ලෙස, API එකකට දත්ත යැවීම
-    console.log('Login attempt with:', { email, password });
-
-    // Login සාර්ථක වුණාට පස්සේ, පරිශීලකයා වෙනත් පිටුවකට යොමු කරන්න පුළුවන්.
-    // Next.js: useRouter().push('/dashboard');
-    // React Router: navigate('/dashboard');
-  };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="text-xl font-semibold">Loading...</div>
+      </div>
+    );
+  }
+  
+  if (user) {
+    // පරිශීලකයා log වී ඇත්නම්, homepage එකට යොමු කරන්න
+    // මෙහිදී ඔබ React Router භාවිතා කරන්නේ නම්, navigate('/dashboard') වැනි දෙයක් භාවිතා කළ හැක.
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="text-xl font-semibold">Logged in as: {user.displayName}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg rounded-lg">
         <h3 className="text-2xl font-bold text-center">Login to your account</h3>
-        <form onSubmit={handleLogin}>
-          <div className="mt-4">
-            <div>
-              <label className="block" htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                placeholder="Email"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mt-4">
-              <label className="block">Password</label>
-              <input 
-                type="password" 
-                placeholder="Password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex items-baseline justify-between mt-4">
-              <button type="submit" className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
-                Login
-              </button>
-              <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
-            </div>
-          </div>
-        </form>
+        <p className="text-center text-gray-600 mb-4">
+          Login using your Google Account
+        </p>
+        <button
+          onClick={() => signInWithGoogle()}
+          className="w-full flex items-center justify-center px-6 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-700 transition-colors"
+        >
+          <svg className="w-5 h-5 mr-2" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M44.5 20H24v8.5h11.2c-.8 5.7-5.5 8.7-11.2 8.7-6.6 0-12-5.4-12-12s5.4-12 12-12c3.4 0 6.4 1.4 8.7 3.5l6.4-6.2C38.4 4.5 31.8 1 24 1 12.3 1 2 10.3 2 22s10.3 21 22 21c11.7 0 20.4-8.7 20.4-21 0-1.4-.2-2.8-.4-4.2z"/>
+          </svg>
+          Login with Google
+        </button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;
