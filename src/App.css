@@ -1,42 +1,33 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+import React, { useState, useEffect } from 'react';
+import NavBar from './components/NavBar';
+import Hero from './components/Hero';
+import Features from './components/Features';
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+export default function App() {
+  const [loading, setLoading] = useState(true);
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  useEffect(() => {
+    // තත්පර 2කට පස්සේ loading state එක false කරන්න
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // ඔබට අවශ්‍ය කාලය වෙනස් කරන්න පුළුවන්
+  }, []);
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  return (
+    <>
+      {loading ? (
+        // Loading screen එක
+        <div className="flex items-center justify-center min-h-screen bg-gray-900">
+          <div className="text-white text-3xl animate-pulse">Loading...</div>
+        </div>
+      ) : (
+        // ඔබේ ප්‍රධාන අන්තර්ගතය
+        <div className="min-h-screen bg-[url('/bg.jpg')] bg-cover bg-center">
+          <NavBar />
+          <Hero />
+          <Features />
+        </div>
+      )}
+    </>
+  );
 }
