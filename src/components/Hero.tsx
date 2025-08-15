@@ -17,7 +17,7 @@ export default function Hero() {
           Start Editing
         </a>
         <a href="#features" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
-          View Features
+          View Featuress
         </a>
         <a href="#templates" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
           Template
