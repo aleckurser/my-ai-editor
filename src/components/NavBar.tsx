@@ -60,7 +60,7 @@ export default function NavBar() {
           About
         </Link>
         <Link to="/other services from our team" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
-        Other services from our team
+        Other services
         </Link>
       </div>
 
