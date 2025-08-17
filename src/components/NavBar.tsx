@@ -50,16 +50,16 @@ export default function NavBar() {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6">
-        <Link to="/features" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="#features" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           Features
         </Link>
-        <Link to="/pricing" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="#pricing" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           Pricing
         </Link>
-        <Link to="/about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="#about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           About
         </Link>
-        <Link to="/other services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="#other services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
         Other services
         </Link>
       </div>

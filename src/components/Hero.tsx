@@ -13,13 +13,13 @@ export default function Hero() {
       </p>
 
       <div className="flex justify-center gap-4 mt-8">
-        <Link to="/start" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
+        <Link to="#start" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
           Start Editing
         </Link>
-        <Link to="/features" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
+        <Link to="#features" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
           View Featuress
         </Link>
-        <Link to="/templates" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
+        <Link to="#templates" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
           Template
         </Link>
       </div>
