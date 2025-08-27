@@ -1,3 +1,5 @@
+// App.tsx
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -10,8 +12,8 @@ import FeaturesPage from './pages/FeaturesPage';
 import Login from './pages/login';
 import PricingPage from './pages/PricingPage';
 import ServicesPage from './pages/ServicesPage';
-import Register from './pages/Register';
-import Reset from './pages/Reset';
+import Register from './pages/Register.tsx'; // මෙතන .tsx එකතු කරන්න
+import Reset from './pages/Reset.tsx'; // මෙතන .tsx එකතු කරන්න
 
 // ප්‍රධාන පිටුවේ අන්තර්ගතය
 function Home() {
