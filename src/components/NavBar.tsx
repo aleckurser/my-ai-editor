@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
   const [user, loading] = useAuthState(auth);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleLogout = () => {
     auth.signOut();
@@ -32,116 +20,104 @@ export default function NavBar() {
   ];
 
   return (
-    <nav
-      className={`flex justify-between items-center p-4 fixed top-0 w-full z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-black/70 backdrop-blur-md text-white shadow-lg' : 'text-black'
-      }`}
-    >
-      {/* Logo */}
-      <div className="flex items-center space-x-3">
-        <Link to="/" className="logo w-10 h-10" aria-label="Brand logo">
-          {/* SVG code for logo */}
+    <nav className="bg-white shadow-md p-4 sticky top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Brand Logo and Name */}
+        <Link to="/" className="text-2xl font-bold text-gray-800">
+          My AI Editor
         </Link>
-        <span className="text-xl font-bold">My AI Editor</span>
-      </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden md:flex space-x-6">
-        {menuItems.map((item) => (
-          <Link
-            key={item.name}
-            to={item.path}
-            className={`${scrolled ? 'text-white' : 'text-black'} hover:text-gray-400 transition-colors`}
-          >
-            {item.name}
-          </Link>
-        ))}
-      </div>
-
-      {/* Auth Buttons */}
-      <div className="hidden md:flex space-x-4">
-        {loading ? (
-          <p className={`${scrolled ? 'text-white' : 'text-black'}`}>Loading...</p>
-        ) : user ? (
-          <>
-            <div className="flex items-center space-x-2">
-              {user.photoURL && (
-                <img
-                  src={user.photoURL}
-                  alt="Profile"
-                  className="w-8 h-8 rounded-full"
-                />
-              )}
-              <p className={`${scrolled ? 'text-white' : 'text-black'}`}>
-                Hello, {user.displayName}
-              </p>
-            </div>
-            <Link to="/dashboard" className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition">
-              Dashboard
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <Link to="/login" className="px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">
-            Login
-          </Link>
-        )}
-      </div>
-
-      {/* Mobile Menu Button */}
-      <button
-        className={`${scrolled ? 'text-white' : 'text-black'} md:hidden text-2xl`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Menu"
-      >
-        {isOpen ? '✖' : '☰'}
-      </button>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-6">
           {menuItems.map((item) => (
             <Link
               key={item.name}
               to={item.path}
-              className="block px-4 py-2"
+              className="text-gray-600 hover:text-blue-500 transition duration-300"
+            >
+              {item.name}
+            </Link>
+          ))}
+          {loading ? (
+            <p className="text-gray-500">Loading...</p>
+          ) : user ? (
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/dashboard"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-red-500 border border-red-500 rounded-md hover:bg-red-500 hover:text-white transition"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-gray-600 focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden mt-4 space-y-2">
+          {menuItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              className="block px-4 py-2 text-gray-600 hover:bg-gray-100 transition"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
             </Link>
           ))}
-          <div className="mt-4 border-t pt-4">
-            {user ? (
-              <>
-                <Link to="/dashboard" className="block px-4 py-2 rounded-full bg-blue-500 text-white text-center hover:bg-blue-600 transition">
-                  Dashboard
-                </Link>
-                <div className="flex items-center space-x-2 mt-2">
-                  {user.photoURL && (
-                    <img
-                      src={user.photoURL}
-                      alt="Profile"
-                      className="w-8 h-8 rounded-full"
-                    />
-                  )}
-                  <p>Hello, {user.displayName}</p>
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition mt-2"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Link to="/login" className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Login</Link>
-            )}
-          </div>
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="block px-4 py-2 bg-blue-500 text-white rounded-md text-center mt-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="block w-full px-4 py-2 text-red-500 border border-red-500 rounded-md text-center mt-2"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="block px-4 py-2 bg-black text-white rounded-md text-center mt-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Login
+            </Link>
+          )}
         </div>
       )}
     </nav>
