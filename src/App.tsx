@@ -9,11 +9,11 @@ import Hero from './components/Hero';
 import AboutPage from './pages/AboutPage';
 import Dashboard from './pages/Dashboard';
 import FeaturesPage from './pages/FeaturesPage';
-import Login from './pages/login';
+import Login from './pages/Login'; // "l" අකුර කුඩා අකුරක් බවට වෙනස් කරන්න
 import PricingPage from './pages/PricingPage';
 import ServicesPage from './pages/ServicesPage';
-import Register from './pages/Register.tsx'; // මෙතන .tsx එකතු කරන්න
-import Reset from './pages/Reset.tsx'; // මෙතන .tsx එකතු කරන්න
+import Register from './pages/Register'; // මෙතන .tsx එකතු කරන්න
+import Reset from './pages/Reset'; // මෙතන .tsx එකතු කරන්න
 
 // ප්‍රධාන පිටුවේ අන්තර්ගතය
 function Home() {
