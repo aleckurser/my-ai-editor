@@ -7,11 +7,11 @@ import Hero from './components/Hero';
 import AboutPage from './pages/AboutPage';
 import Dashboard from './pages/Dashboard';
 import FeaturesPage from './pages/FeaturesPage';
-import Login from './pages/login'; // නිවැරදි නම භාවිතා කරන්න (කුඩා අකුරෙන්)
+import Login from './pages/login'; // 'login' ලෙස කුඩා අකුරින් සඳහන් කරන්න
 import PricingPage from './pages/PricingPage';
 import ServicesPage from './pages/ServicesPage';
-import Register from './pages/Register'; // ඔබගේ Register ගොනුවේ නම පරීක්ෂා කරන්න (උදා: 'register' හෝ 'Register')
-import Reset from './pages/Reset'; // ඔබගේ Reset ගොනුවේ නම පරීක්ෂා කරන්න (උදා: 'reset' හෝ 'Reset')
+import Register from './pages/Register'; // 'Register' ලෙසම තබන්න
+import Reset from './pages/Reset'; // 'Reset' ලෙසම තබන්න
 
 // ප්‍රධාන පිටුවේ අන්තර්ගතය
 function Home() {
