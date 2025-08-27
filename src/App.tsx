@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Hero from './components/Hero'; // ඔබගේ Hero component එක
-import FeaturesPage from './pages/FeaturesPage'; // ඔබේ FeaturesPage.tsx ගොනුව import කරන්න
-import AboutPage from './pages/AboutPage'; // ඔබේ AboutPage.tsx ගොනුව import කරන්න
+import Hero from './components/Hero';
+
+// pages ෆෝල්ඩරයේ ඇති componentස් import කරන්න
+import AboutPage from './pages/AboutPage';
+import Dashboard from './pages/Dashboard';
+import FeaturesPage from './pages/FeaturesPage';
+import Login from './pages/login'; 
 
 function Home() {
   return (
@@ -39,6 +43,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
         {/* ඔබට වෙනත් පිටු අවශ්‍ය නම්, මේ ආකාරයට ඒවාටද Routes එකතු කරන්න */}
         {/* <Route path="/pricing" element={<Pricing />} /> */}
         {/* <Route path="/services" element={<Services />} /> */}
