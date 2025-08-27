@@ -40,10 +40,8 @@ export default function NavBar() {
     >
       {/* Logo */}
       <div className="flex items-center space-x-3">
-        <Link to="/">
-          <a className={`logo block w-10 h-10 ${scrolled ? 'text-white' : 'text-black'}`} aria-label="Brand logo">
-            {/* SVG code for logo */}
-          </a>
+        <Link to="/" className="logo w-10 h-10" aria-label="Brand logo">
+          {/* SVG code for logo */}
         </Link>
         <span className={`text-xl font-bold ${scrolled ? 'text-white' : 'text-black'}`}>My AI Editor</span>
       </div>
@@ -59,8 +57,8 @@ export default function NavBar() {
         <Link to="#about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           About
         </Link>
-        <Link to="#other services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
-        Other services
+        <Link to="#other-services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+          Other services
         </Link>
       </div>
 
@@ -108,9 +106,13 @@ export default function NavBar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
+          <Link to="#features" className="block px-4 py-2">Features</Link>
+          <Link to="#pricing" className="block px-4 py-2">Pricing</Link>
+          <Link to="#about" className="block px-4 py-2">About</Link>
+          <Link to="#other-services" className="block px-4 py-2">Other services</Link>
           {user ? (
             <>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mt-4 border-t pt-4">
                 {user.photoURL && (
                   <img
                     src={user.photoURL}
@@ -122,13 +124,13 @@ export default function NavBar() {
               </div>
               <button
                 onClick={handleLogout}
-                className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition"
+                className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition"
               >
                 Logout
               </button>
             </>
           ) : (
-            <Link to="/login" className="block px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Login</Link>
+            <Link to="/login" className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Login</Link>
           )}
         </div>
       )}
