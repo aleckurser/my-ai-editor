@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 
-// pages ෆෝල්ඩරයේ ඇති components නිවැරදිව import කරන්න
+// pages ෆෝල්ඩරයේ ඇති components import කරන්න
 import AboutPage from './pages/AboutPage';
 import Dashboard from './pages/Dashboard';
 import FeaturesPage from './pages/FeaturesPage';
-import Login from './pages/login'; // 'login' ලෙස කුඩා අකුරින් සඳහන් කරන්න
+import Login from './pages/login'; // නිවැරදි නම භාවිතා කරන්න
 import PricingPage from './pages/PricingPage';
 import ServicesPage from './pages/ServicesPage';
-import Register from './pages/Register'; // 'Register' ලෙසම තබන්න
-import Reset from './pages/Reset'; // 'Reset' ලෙසම තබන්න
+import Register from './pages/register'; // නිවැරදි නම භාවිතා කරන්න (කුඩා අකුරෙන්)
+import Reset from './pages/Reset';
 
 // ප්‍රධාන පිටුවේ අන්තර්ගතය
 function Home() {
