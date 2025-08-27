@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase'; // firebase object එක import කරන්න
+import { auth } from '../firebase';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function NavBar() {
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
 
-  const [user, loading] = useAuthState(auth); // user ගේ තොරතුරු ලබා ගන්න
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +30,7 @@ export default function NavBar() {
 
   const handleLogout = () => {
     auth.signOut();
+    setIsOpen(false);
   };
 
   return (
@@ -48,16 +49,16 @@ export default function NavBar() {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6">
-        <Link to="#features" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="/features" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           Features
         </Link>
-        <Link to="#pricing" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="/pricing" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           Pricing
         </Link>
-        <Link to="#about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="/about" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           About
         </Link>
-        <Link to="#other-services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
+        <Link to="/services" className={`${scrolled ? 'text-white' : 'text-black'} hover:text-white transition-colors`}>
           Other services
         </Link>
       </div>
@@ -106,10 +107,10 @@ export default function NavBar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white text-black shadow-lg p-4 space-y-4 md:hidden animate-fadeIn">
-          <Link to="#features" className="block px-4 py-2">Features</Link>
-          <Link to="#pricing" className="block px-4 py-2">Pricing</Link>
-          <Link to="#about" className="block px-4 py-2">About</Link>
-          <Link to="#other-services" className="block px-4 py-2">Other services</Link>
+          <Link to="/features" className="block px-4 py-2" onClick={() => setIsOpen(false)}>Features</Link>
+          <Link to="/pricing" className="block px-4 py-2" onClick={() => setIsOpen(false)}>Pricing</Link>
+          <Link to="/about" className="block px-4 py-2" onClick={() => setIsOpen(false)}>About</Link>
+          <Link to="/services" className="block px-4 py-2" onClick={() => setIsOpen(false)}>Other services</Link>
           {user ? (
             <>
               <div className="flex items-center space-x-2 mt-4 border-t pt-4">
@@ -130,20 +131,10 @@ export default function NavBar() {
               </button>
             </>
           ) : (
-            <Link to="/login" className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition">Login</Link>
+            <Link to="/login" className="block w-full px-4 py-2 rounded-full bg-black text-white hover:bg-white hover:text-black transition" onClick={() => setIsOpen(false)}>Login</Link>
           )}
         </div>
       )}
-
-      {/* minimal CSS for hover spin & reduced motion */}
-      <style jsx>{`
-        .logo svg { transition: transform .3s ease; }
-        .logo:hover svg { animation: spin 6s linear infinite; }
-        @keyframes spin { from { transform: rotate(0) } to { transform: rotate(360deg) } }
-        @media (prefers-reduced-motion: reduce) {
-          .logo:hover svg { animation: none !important; }
-        }
-      `}</style>
     </nav>
   );
 }
