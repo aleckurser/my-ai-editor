@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
@@ -17,12 +17,12 @@ export default function Hero() {
           Start Editing
         </Link>
         <Link to="#features" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
-          View Featuress
+          View Features
         </Link>
         <Link to="#templates" className="px-6 py-3 rounded-full border border-white hover:bg-white hover:text-black transition flex items-center gap-2">
           Template
         </Link>
       </div>
     </section>
-  )
+  );
 }
