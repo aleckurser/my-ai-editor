@@ -7,7 +7,9 @@ import Hero from './components/Hero';
 import AboutPage from './pages/AboutPage';
 import Dashboard from './pages/Dashboard';
 import FeaturesPage from './pages/FeaturesPage';
-import Login from './pages/login'; 
+import Login from './pages/login';
+import PricingPage from './pages/PricingPage';
+import ServicesPage from './pages/ServicesPage';
 
 function Home() {
   return (
@@ -21,7 +23,6 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // තත්පර 2කට පස්සේ loading state එක false කරන්න
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -29,7 +30,6 @@ export default function App() {
 
   if (loading) {
     return (
-      // Loading screen එක
       <div className="flex items-center justify-center min-h-screen bg-gray-900">
         <div className="text-white text-3xl animate-pulse">Loading...</div>
       </div>
@@ -45,9 +45,8 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
-        {/* ඔබට වෙනත් පිටු අවශ්‍ය නම්, මේ ආකාරයට ඒවාටද Routes එකතු කරන්න */}
-        {/* <Route path="/pricing" element={<Pricing />} /> */}
-        {/* <Route path="/services" element={<Services />} /> */}
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/services" element={<ServicesPage />} />
       </Routes>
     </Router>
   );
