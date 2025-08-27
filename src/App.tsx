@@ -1,5 +1,3 @@
-// App.tsx
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -9,11 +7,11 @@ import Hero from './components/Hero';
 import AboutPage from './pages/AboutPage';
 import Dashboard from './pages/Dashboard';
 import FeaturesPage from './pages/FeaturesPage';
-import Login from './pages/login'; // "l" අකුර කුඩා අකුරක් බවට වෙනස් කරන්න
+import Login from './pages/login';
 import PricingPage from './pages/PricingPage';
 import ServicesPage from './pages/ServicesPage';
-import Register from './pages/Register'; // මෙතන .tsx එකතු කරන්න
-import Reset from './pages/Reset'; // මෙතන .tsx එකතු කරන්න
+import Register from './pages/Register';
+import Reset from './pages/Reset';
 
 // ප්‍රධාන පිටුවේ අන්තර්ගතය
 function Home() {
